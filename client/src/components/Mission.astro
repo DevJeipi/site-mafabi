@@ -1,0 +1,56 @@
+---
+import type { TMissionBlock } from '../types';
+
+interface Props {
+  mission: TMissionBlock;
+}
+
+const { mission } = Astro.props as Props;
+
+  const heading = mission.heading ?? 'O Manifesto';
+  const text = mission.text ?? 'Acreditamos no potencial que a comunicação liberta.';
+  const quote = mission.quote ?? 'Onde outros veem barreiras, nós construímos pontes baseadas em altas expectativas.';
+
+---
+
+<section class="py-20 px-4 bg-[#F9FAFB] text-center" data-reveal>
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-[#2A5B6F] mb-8 tracking-tight">
+      {heading}
+    </h2>
+
+  <p class="text-lg md:text-xl text-[#6B7280] leading-relaxed mb-10">
+    {text.split('\n').map((line, idx) => (
+      <>
+        {line}
+        {idx < text.split('\n').length - 1 ? <br /> : null}
+      </>
+    ))}
+  </p>
+
+    <div class="inline-block p-6 border-l-4 border-[#D97706] bg-white shadow-sm italic text-[#374151]">
+      "{quote}"
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    els.forEach((el) => {
+      el.classList.add('opacity-0', 'translate-y-3');
+    });
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.remove('opacity-0', 'translate-y-3');
+          e.target.classList.add('opacity-100');
+          e.target.classList.add('transition-all', 'duration-700');
+          io.unobserve(e.target);
+        }
+      }
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+  })();
+</script>

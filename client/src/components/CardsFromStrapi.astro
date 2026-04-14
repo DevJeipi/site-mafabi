@@ -1,0 +1,86 @@
+---
+import StrapiImage from './StrapiImage.astro';
+
+interface Props {
+  cardsBlock: any;
+}
+
+const { cardsBlock } = Astro.props as Props;
+
+const subtitle: string = cardsBlock?.subtitle ?? '';
+const heading = cardsBlock?.heading;
+const paragraph: string = cardsBlock?.paragraph ?? '';
+const cards: any[] = cardsBlock?.Cards ?? [];
+
+function headingToText(h: unknown) {
+  if (!h) return '';
+  if (typeof h === 'string') return h;
+  try {
+    return JSON.stringify(h);
+  } catch {
+    return String(h);
+  }
+}
+---
+
+<section class="w-full py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-14">
+      {subtitle ? (
+        <p class="text-sm uppercase tracking-[0.3em] text-[#2A5B6F] font-semibold">{subtitle}</p>
+      ) : null}
+      {headingToText(heading) ? (
+        <h2 class="mt-4 text-3xl md:text-4xl font-bold text-slate-900">{headingToText(heading)}</h2>
+      ) : null}
+      {paragraph ? (
+        <p class="mt-4 max-w-2xl mx-auto text-base leading-7 text-slate-600">{paragraph}</p>
+      ) : null}
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {cards.map((c, idx) => {
+        const icon = c?.Icon;
+        const iconUrl = icon?.url ?? null;
+        const iconAlt = icon?.alternativeText ?? c?.title ?? `Card ${idx + 1}`;
+
+        return (
+          <article
+            class="group rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-[0_25px_50px_-25px_rgba(15,23,42,0.35)]"
+          >
+            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-600 text-white transition duration-300 group-hover:bg-teal-700 overflow-hidden">
+              {iconUrl ? (
+                <div class="w-full h-full">
+                  <StrapiImage
+                    src={iconUrl}
+                    alt={iconAlt}
+                    width={64}
+                    height={64}
+                    aspectRatio="square"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              ) : (
+                <svg
+                  class="w-7 h-7 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                  <path d="M8 12h8" />
+                </svg>
+              )}
+            </div>
+
+            {c?.title ? <h3 class="mt-8 text-xl font-semibold text-slate-900">{c.title}</h3> : null}
+            {c?.description ? <p class="mt-4 text-sm leading-6 text-slate-600">{c.description}</p> : null}
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+- Repo is two separate Node apps: `client/` (Astro) + `server/` (Strapi); there is no root `package.json`/workspace runner.
+- Run installs and dev/build commands inside the relevant directory (`client/` vs `server/`), not at repo root.
+- Default ports: Astro `localhost:4321` (from `client/README.md`) and Strapi `localhost:1337` (from `server/.env` + `client` fallbacks).
+- Astro JSON fetches Strapi global data from `/api/global?populate=*` using `VITE_STRAPI_API_URL` (fallback: `http://localhost:1337`) in `client/src/layouts/Layout.astro`.
+- Astro image/media URLs are prefixed with `VITE_STRAPI_BASE_URL` (fallback: `http://localhost:1337`) in `client/src/components/StrapiImage.astro`.
+- Strapi DB defaults to SQLite using `DATABASE_FILENAME` (default: `.tmp/data.db`) in `server/config/database.ts`.
+- Strapi secrets come from `server/.env` (or copy/fill `server/.env.example`): `APP_KEYS`, `API_TOKEN_SALT`, `ADMIN_JWT_SECRET`, `TRANSFER_TOKEN_SALT`, `ENCRYPTION_KEY`.
+- Node constraints: `client/package.json` requires node `>=22.12.0`; `server/package.json` allows node `>=20.0.0` and `<=24.x.x`.
+- Strapi start commands (server): `npm run develop` (hot reload), `npm run start`, `npm run build`.
+- Astro start/build commands (client): `npm run dev`, `npm run build`, `npm run preview`.
+- No lint/test/typecheck scripts are defined in either `package.json`; use `npm run build` / `npm run dev` for verification.

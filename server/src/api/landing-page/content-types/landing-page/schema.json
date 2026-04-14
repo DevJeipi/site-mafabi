@@ -17,11 +17,14 @@
     "descricao": {
       "type": "text"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "blocks.hero"
-      ]
-    }
+      "blocks": {
+        "type": "dynamiczone",
+        "components": [
+          "blocks.hero",
+          "blocks.cards",
+          "blocks.mission",
+          "blocks.values"
+        ]
+      }
   }
 }

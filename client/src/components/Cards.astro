@@ -1,0 +1,47 @@
+---
+import { Heart, BookOpen, Stethoscope, CheckCircle } from 'lucide-react';
+---
+
+<section class="w-full py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-14">
+      <p class="text-sm uppercase tracking-[0.3em] text-teal-600 font-semibold">O que entregamos</p>
+      <h2 class="mt-4 text-3xl md:text-4xl font-bold text-slate-900">Soluções pensadas para cada público</h2>
+      <p class="mt-4 max-w-2xl mx-auto text-base leading-7 text-slate-600">Materiais e recursos que conectam famílias, educadores, terapeutas e equipes escolares com práticas acessíveis, funcionais e de alto impacto.</p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <article class="group rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-[0_25px_50px_-25px_rgba(15,23,42,0.35)]">
+        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-600 text-white transition duration-300 group-hover:bg-teal-700">
+          <Heart className="h-7 w-7" />
+        </div>
+        <h3 class="mt-8 text-xl font-semibold text-slate-900">Para Famílias</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-600">Fomentamos a autonomia e o desenvolvimento no ambiente doméstico, oferecendo recursos que facilitam a rotina e fortalecem o vínculo através da comunicação funcional.</p>
+      </article>
+
+      <article class="group rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-[0_25px_50px_-25px_rgba(15,23,42,0.35)]">
+        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-600 text-white transition duration-300 group-hover:bg-cyan-700">
+          <BookOpen className="h-7 w-7" />
+        </div>
+        <h3 class="mt-8 text-xl font-semibold text-slate-900">Para Educadores</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-600">Garantimos o acesso real ao conhecimento com materiais acadêmicos adaptados, pensados para tornar o currículo escolar acessível e significativo para todo aluno.</p>
+      </article>
+
+      <article class="group rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-[0_25px_50px_-25px_rgba(15,23,42,0.35)]">
+        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-600 text-white transition duration-300 group-hover:bg-indigo-700">
+          <Stethoscope className="h-7 w-7" />
+        </div>
+        <h3 class="mt-8 text-xl font-semibold text-slate-900">Terapeutas e Profissionais</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-600">Oferecemos ferramentas de alta qualidade que servem como suporte técnico para intervenções clínicas, focando em resultados claros para necessidades complexas.</p>
+      </article>
+
+      <article class="group rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-[0_25px_50px_-25px_rgba(15,23,42,0.35)]">
+        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500 text-white transition duration-300 group-hover:bg-amber-600">
+          <CheckCircle className="h-7 w-7" />
+        </div>
+        <h3 class="mt-8 text-xl font-semibold text-slate-900">Qualidade e Funcionalidade</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-600">Nosso compromisso é com a entrega de materiais claros e prontos para o uso, desenhados com intencionalidade pedagógica para respeitar cada perfil de aprendizagem.</p>
+      </article>
+    </div>
+  </div>
+</section>

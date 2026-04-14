@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_values",
+  "info": {
+    "displayName": "Values"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "values": {
+      "type": "component",
+      "component": "shared.value-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

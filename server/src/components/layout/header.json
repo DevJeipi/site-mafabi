@@ -10,14 +10,14 @@
       "component": "shared.logo-link",
       "repeatable": false
     },
-    "navItems": {
+    "Itemsnav": {
       "type": "component",
-      "component": "shared.link",
+      "component": "shared.logo-link",
       "repeatable": true
     },
-    "cta": {
+    "socialLink": {
       "type": "component",
-      "component": "shared.link",
+      "component": "shared.logo-link",
       "repeatable": false
     }
   },

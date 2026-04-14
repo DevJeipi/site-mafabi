@@ -1,0 +1,121 @@
+---
+import type { TValuesBlock } from '../types';
+import ValueCard from './ValueCard.astro';
+import {
+  Heart,
+  Target,
+  Shield,
+  Lightbulb,
+  BookOpen,
+  Stethoscope,
+  CheckCircle,
+  Star,
+  Sparkles,
+  Smile,
+  Globe,
+  Brain,
+} from 'lucide-react';
+
+interface Props {
+  valuesBlock: TValuesBlock;
+}
+
+const { valuesBlock } = Astro.props as Props;
+
+const heading = valuesBlock.heading ?? 'Os Pilares';
+const description = valuesBlock.description ?? 'Valores que guiam nossas escolhas e sustentam nossa missão.';
+const values = valuesBlock.values ?? [];
+
+function mapIconColorToPastel(iconColor?: string) {
+  const c = (iconColor ?? '').toLowerCase().trim();
+  if (c.includes('blue')) return 'bg-blue-100';
+  if (c.includes('red')) return 'bg-red-100';
+  if (c.includes('green')) return 'bg-emerald-100';
+  if (c.includes('yellow')) return 'bg-yellow-100';
+  // fallback: preserve design language
+  return 'bg-[#2A5B6F]/10';
+}
+
+function iconKey(icon?: string) {
+  return (icon ?? '').toLowerCase();
+}
+---
+
+<section class="py-20 px-4 bg-[#F9FAFB]" data-reveal>
+  <div class="max-w-7xl mx-auto">
+    <div class="max-w-2xl">
+      <p class="text-sm uppercase tracking-[0.3em] text-[#2A5B6F] font-semibold">Valores</p>
+      <h2 class="mt-4 text-3xl md:text-4xl font-bold text-[#2A5B6F]">{heading}</h2>
+      <p class="mt-4 text-base md:text-lg text-[#6B7280] leading-relaxed">{description}</p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {values.map((v) => (
+        <ValueCard title={v.title} description={v.description} iconColor={mapIconColorToPastel(v.iconColor)}>
+          <div slot="icon">
+            {iconKey(v.icon) === 'heart' ? (
+              <Heart className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'target' ? (
+              <Target className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'shield' ? (
+              <Shield className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'lightbulb' ? (
+              <Lightbulb className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'bookopen' || iconKey(v.icon) === 'book_open' ? (
+              <BookOpen className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'stethoscope' ? (
+              <Stethoscope className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'checkcircle' ? (
+              <CheckCircle className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'star' ? (
+              <Star className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'sparkles' ? (
+              <Sparkles className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'smile' ? (
+              <Smile className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'globe' ? (
+              <Globe className="w-6 h-6 text-[#2A5B6F]" />
+            ) : iconKey(v.icon) === 'brain' ? (
+              <Brain className="w-6 h-6 text-[#2A5B6F]" />
+            ) : (
+              <svg
+                class="w-6 h-6 text-[#2A5B6F]"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <path d="M8 12h8" />
+              </svg>
+            )}
+          </div>
+        </ValueCard>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    els.forEach((el) => {
+      el.classList.add('opacity-0', 'translate-y-3');
+    });
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.remove('opacity-0', 'translate-y-3');
+          e.target.classList.add('opacity-100');
+          e.target.classList.add('transition-all', 'duration-700');
+          io.unobserve(e.target);
+        }
+      }
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+  })();
+</script>

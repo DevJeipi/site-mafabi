@@ -1,17 +1,82 @@
+---
+import '../styles/global.css';
+import type { THeader, TFooter } from '../types';
+import Header from '../components/Header.astro';
+
+type TStrapiResponse<T=null> = {
+	sucess: boolean;
+	data?: T;
+	error?: {
+		status: number;
+		name: string;
+		message: string;
+		details?: Record<string, string[]>
+	};
+	meta?: {
+		pagination: {
+			page: number;
+			pageSize: number;
+			pageCount: number;
+			total: number;
+		}
+	}
+}
+
+type TGlobalData = {
+	id: number;
+	documentId: string;
+	titulo: string;
+	descricao: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	Header: THeader;
+	Footer: TFooter;
+}
+
+async function getStrapiGlobalData(): Promise<TStrapiResponse<TGlobalData>> {
+	// Use IPv4 to avoid local dev resolving `localhost` to `::1` (can cause fetch failures).
+	const BASE_API_URL_EFFECTIVE = import.meta.env.VITE_STRAPI_API_URL ?? 'http://127.0.0.1:1337';
+	const path = '/api/global';
+	const url = new URL(path, BASE_API_URL_EFFECTIVE);
+	url.searchParams.append('populate', '*');
+	try {
+		const response = await fetch(url.href);
+		const data = await response.json();
+		return data as TStrapiResponse<TGlobalData>;
+	} catch (err) {
+		console.error('Failed to fetch global data:', err);
+		return {
+			sucess: false,
+			error: {
+				status: 0,
+				name: 'FetchError',
+				message: err instanceof Error ? err.message : String(err)
+			}
+		};
+	}
+}
+
+const globalData = await getStrapiGlobalData();
+
+const { Header: headerData, Footer: footerData } = globalData.data ?? {};
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<title>Site | Materiais Adaptados Fabi</title>
 	</head>
 	<body>
-		<title>Site | Materiais Adaptados Fabi</title>
+		{headerData && <Header data={headerData} />}
 		<slot />
 	</body>
-</html>
+	</html>
 
 <style>
 	html,

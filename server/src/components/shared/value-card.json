@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_value_cards",
+  "info": {
+    "displayName": "ValueCard"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "iconColor": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -18,6 +18,25 @@ const populate = {
           },
         },
       },
+      "blocks.mission": {
+        // all primitive fields (heading/text/quote) do not require populate
+      },
+      "blocks.values": {
+        populate: {
+          values: true,
+        },
+      },
+      "blocks.cards": {
+        populate: {
+          Cards: {
+            populate: {
+              Icon: {
+                fields: ["alternativeText", "url"],
+              },
+            },
+          },
+        },
+      },
     },
   },
 };

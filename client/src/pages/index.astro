@@ -1,11 +1,81 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Hero from '../components/Hero.astro';
+import Mission from '../components/Mission.astro';
+import Values from '../components/Values.astro';
+import Cards from '../components/Cards.astro';
+import CardsFromStrapi from '../components/CardsFromStrapi.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import type { THeroBlock, TMissionBlock, TValuesBlock } from '../types';
+
+async function getLandingPageBlocks(): Promise<Array<{ __component: string } & any>> {
+	let BASE_API_URL = import.meta.env.VITE_STRAPI_API_URL ?? 'http://127.0.0.1:1337';
+	if (BASE_API_URL.includes('localhost')) {
+		BASE_API_URL = BASE_API_URL.replace('localhost', '127.0.0.1');
+	}
+	const path = '/api/landing-page';
+	const url = new URL(path, BASE_API_URL);
+	url.searchParams.append('populate', '*');
+
+	try {
+		const res = await fetch(url.href);
+		const json = (await res.json()) as {
+			data?: {
+				blocks?: Array<{ __component: string } & THeroBlock>;
+			};
+		};
+
+		return json.data?.blocks ?? [];
+	} catch (err) {
+		console.error('Failed to fetch landing-page blocks:', err);
+		return [];
+	}
+}
+
+const blocks = await getLandingPageBlocks();
+
+const hasCards = blocks.some((b) => b.__component === 'blocks.cards');
+
+const heroFallback: THeroBlock = {
+	heading: 'Seja bem-vindo ao Materiais Adaptados Fabi',
+	text: 'Recursos e materiais pensados para tornar a aprendizagem mais acessível e significativa.',
+	links: [],
+	image: [],
+	imageAbove: null,
+};
+
+const missionFallback: TMissionBlock = {
+	heading: 'O Manifesto',
+	text: 'Acreditamos no potencial que a comunicação liberta. Nossa jornada é guiada por um objetivo claro: garantir que nenhum aluno seja deixado para trás por falta de ferramentas adequadas.',
+	quote: 'Onde outros veem barreiras, nós construímos pontes baseadas em altas expectativas.',
+};
+
+const valuesFallback: TValuesBlock = {
+	heading: 'Os Pilares',
+	description: 'Valores que guiam nossas escolhas e sustentam nossa missão.',
+	values: [
+		{ title: 'Autonomia', description: 'Promovemos independência com recursos práticos.', icon: 'heart', iconColor: 'bg-blue-100' },
+		{ title: 'Acesso', description: 'Transformamos conhecimento em caminhos possíveis.', icon: 'target', iconColor: 'bg-amber-100' },
+		{ title: 'Confiança', description: 'Entregamos com consistência, clareza e qualidade.', icon: 'shield', iconColor: 'bg-teal-100' },
+	],
+};
 ---
 
 <Layout>
-	<Welcome />
+	{blocks.map((block) => {
+		switch (block.__component) {
+			case 'blocks.hero':
+				return <Hero hero={(block as THeroBlock) ?? heroFallback} />;
+			case 'blocks.mission':
+				return <Mission mission={(block as TMissionBlock) ?? missionFallback} />;
+			case 'blocks.values':
+				return <Values valuesBlock={(block as TValuesBlock) ?? valuesFallback} />;
+			case 'blocks.cards':
+				return <CardsFromStrapi cardsBlock={block} />;
+			default:
+				return null;
+		}
+	})}
+
+	{hasCards ? null : <Cards />}
 </Layout>

@@ -14,8 +14,20 @@ const populate = {
           },
         },
       },
-      navItems: true,
-      cta: true,
+      Itemsnav: {
+        populate: {
+          image: {
+            fields: ["alternativeText", "url"],
+          },
+        },
+      },
+      socialLink: {
+        populate: {
+          image: {
+            fields: ["alternativeText", "url"],
+          },
+        },
+      },
     },
   },
   Footer: {
