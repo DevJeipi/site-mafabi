@@ -1,6 +1,14 @@
 ---
 import StrapiImage from './StrapiImage.astro';
 
+const cardPastels = [
+  'bg-[var(--color-pastel-pink)]',
+  'bg-[var(--color-pastel-yellow)]',
+  'bg-[var(--color-pastel-purple)]',
+  'bg-[var(--color-pastel-blue)]',
+  'bg-[var(--color-pastel-orange)]',
+];
+
 interface Props {
   cardsBlock: any;
 }
@@ -23,14 +31,14 @@ function headingToText(h: unknown) {
 }
 ---
 
-<section class="w-full py-20">
+<section class="w-full py-20 bg-[var(--color-surface-soft)]">
   <div class="mx-auto max-w-7xl px-6">
     <div class="text-center mb-14">
       {subtitle ? (
-        <p class="text-sm uppercase tracking-[0.3em] text-[#2A5B6F] font-semibold">{subtitle}</p>
+        <p class="text-sm uppercase tracking-[0.3em] text-[var(--color-primary-teal)] font-semibold">{subtitle}</p>
       ) : null}
       {headingToText(heading) ? (
-        <h2 class="mt-4 text-3xl md:text-4xl font-bold text-slate-900">{headingToText(heading)}</h2>
+        <h2 class="mt-4 text-3xl md:text-4xl font-bold text-[var(--color-text)]">{headingToText(heading)}</h2>
       ) : null}
       {paragraph ? (
         <p class="mt-4 max-w-2xl mx-auto text-base leading-7 text-slate-600">{paragraph}</p>
@@ -45,9 +53,9 @@ function headingToText(h: unknown) {
 
         return (
           <article
-            class="group rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-[0_25px_50px_-25px_rgba(15,23,42,0.35)]"
+            class="group rounded-[32px] border border-slate-200 bg-white/90 p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-[0_25px_50px_-25px_rgba(15,23,42,0.22)]"
           >
-            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-600 text-white transition duration-300 group-hover:bg-teal-700 overflow-hidden">
+            <div class={`flex h-16 w-16 items-center justify-center rounded-2xl ${cardPastels[idx % cardPastels.length]} text-white transition duration-300 overflow-hidden`}>
               {iconUrl ? (
                 <div class="w-full h-full">
                   <StrapiImage

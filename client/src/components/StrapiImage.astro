@@ -11,6 +11,7 @@ interface Props {
   quality?: number;
   responsive?: boolean;
   aspectRatio?: 'square' | '16:9' | '4:3' | 'auto';
+  fit?: 'cover' | 'contain';
   fallback?: string;
   sizes?: string;
 }
@@ -24,6 +25,7 @@ const {
   quality = 80,
   responsive = true,
   aspectRatio = 'auto',
+  fit = 'cover',
   fallback = '/images/placeholder.svg',
   sizes
 } = Astro.props;
@@ -44,11 +46,11 @@ if (height <= 0 || width <= 0) {
   // Ensure images respect the container sizing (no `h-auto` overflow).
   const styles = {
     container: "overflow-hidden w-full h-full",
-    image: "object-cover transition-opacity duration-300",
+    image: fit === 'contain' ? "object-contain transition-opacity duration-300" : "object-cover transition-opacity duration-300",
     responsive: "w-full h-full",
-    square: "aspect-square w-full h-full object-cover",
-    widescreen: "aspect-video w-full h-full object-cover",
-    standard: "aspect-[4/3] w-full h-full object-cover"
+    square: fit === 'contain' ? "aspect-square w-full h-full object-contain" : "aspect-square w-full h-full object-cover",
+    widescreen: fit === 'contain' ? "aspect-video w-full h-full object-contain" : "aspect-video w-full h-full object-cover",
+    standard: fit === 'contain' ? "aspect-[4/3] w-full h-full object-contain" : "aspect-[4/3] w-full h-full object-cover"
   };
 
 // Helper function to get aspect ratio classes

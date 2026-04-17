@@ -90,6 +90,17 @@ export interface SharedCardContent extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedHeadingSection extends Struct.ComponentSchema {
+  collectionName: 'components_shared_heading_sections';
+  info: {
+    displayName: 'Heading Section';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    subheading: Schema.Attribute.Text;
+  };
+}
+
 export interface SharedLink extends Struct.ComponentSchema {
   collectionName: 'components_shared_links';
   info: {
@@ -140,6 +151,7 @@ declare module '@strapi/strapi' {
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
       'shared.card-content': SharedCardContent;
+      'shared.heading-section': SharedHeadingSection;
       'shared.link': SharedLink;
       'shared.logo-link': SharedLogoLink;
       'shared.value-card': SharedValueCard;

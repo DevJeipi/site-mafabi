@@ -2,6 +2,14 @@
 import '../styles/global.css';
 import type { THeader, TFooter } from '../types';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props as Props;
 
 type TStrapiResponse<T=null> = {
 	sucess: boolean;
@@ -70,11 +78,13 @@ const { Header: headerData, Footer: footerData } = globalData.data ?? {};
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Site | Materiais Adaptados Fabi</title>
+		<title>{title || 'Site | Materiais Adaptados Fabi'}</title>
+		{description ? <meta name="description" content={description} /> : null}
 	</head>
 	<body>
 		{headerData && <Header data={headerData} />}
 		<slot />
+		{footerData && <Footer data={footerData} />}
 	</body>
 	</html>
 

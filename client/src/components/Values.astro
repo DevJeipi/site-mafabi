@@ -26,60 +26,57 @@ const heading = valuesBlock.heading ?? 'Os Pilares';
 const description = valuesBlock.description ?? 'Valores que guiam nossas escolhas e sustentam nossa missão.';
 const values = valuesBlock.values ?? [];
 
-function mapIconColorToPastel(iconColor?: string) {
-  const c = (iconColor ?? '').toLowerCase().trim();
-  if (c.includes('blue')) return 'bg-blue-100';
-  if (c.includes('red')) return 'bg-red-100';
-  if (c.includes('green')) return 'bg-emerald-100';
-  if (c.includes('yellow')) return 'bg-yellow-100';
-  // fallback: preserve design language
-  return 'bg-[#2A5B6F]/10';
-}
+const valuePastels = [
+  'bg-[var(--color-pastel-pink)]',
+  'bg-[var(--color-pastel-yellow)]',
+  'bg-[var(--color-pastel-purple)]',
+  'bg-[var(--color-pastel-blue)]',
+];
 
 function iconKey(icon?: string) {
   return (icon ?? '').toLowerCase();
 }
 ---
 
-<section class="py-20 px-4 bg-[#F9FAFB]" data-reveal>
+<section class="py-20 px-4 bg-[var(--color-surface-soft)]" data-reveal>
   <div class="max-w-7xl mx-auto">
-    <div class="max-w-2xl">
-      <p class="text-sm uppercase tracking-[0.3em] text-[#2A5B6F] font-semibold">Valores</p>
-      <h2 class="mt-4 text-3xl md:text-4xl font-bold text-[#2A5B6F]">{heading}</h2>
-      <p class="mt-4 text-base md:text-lg text-[#6B7280] leading-relaxed">{description}</p>
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-sm uppercase tracking-[0.3em] text-[var(--color-primary-teal)] font-semibold">Valores</p>
+      <h2 class="mt-4 text-3xl md:text-4xl font-bold text-[var(--color-text)]">{heading}</h2>
+      <p class="mt-4 text-base md:text-lg text-slate-600 leading-relaxed">{description}</p>
     </div>
 
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-      {values.map((v) => (
-        <ValueCard title={v.title} description={v.description} iconColor={mapIconColorToPastel(v.iconColor)}>
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {values.map((v, idx) => (
+        <ValueCard title={v.title} description={v.description} iconColor={valuePastels[idx % valuePastels.length]}>
           <div slot="icon">
             {iconKey(v.icon) === 'heart' ? (
-              <Heart className="w-6 h-6 text-[#2A5B6F]" />
+              <Heart className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'target' ? (
-              <Target className="w-6 h-6 text-[#2A5B6F]" />
+              <Target className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'shield' ? (
-              <Shield className="w-6 h-6 text-[#2A5B6F]" />
+              <Shield className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'lightbulb' ? (
-              <Lightbulb className="w-6 h-6 text-[#2A5B6F]" />
+              <Lightbulb className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'bookopen' || iconKey(v.icon) === 'book_open' ? (
-              <BookOpen className="w-6 h-6 text-[#2A5B6F]" />
+              <BookOpen className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'stethoscope' ? (
-              <Stethoscope className="w-6 h-6 text-[#2A5B6F]" />
+              <Stethoscope className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'checkcircle' ? (
-              <CheckCircle className="w-6 h-6 text-[#2A5B6F]" />
+              <CheckCircle className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'star' ? (
-              <Star className="w-6 h-6 text-[#2A5B6F]" />
+              <Star className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'sparkles' ? (
-              <Sparkles className="w-6 h-6 text-[#2A5B6F]" />
+              <Sparkles className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'smile' ? (
-              <Smile className="w-6 h-6 text-[#2A5B6F]" />
+              <Smile className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'globe' ? (
-              <Globe className="w-6 h-6 text-[#2A5B6F]" />
+              <Globe className="w-6 h-6 text-white" />
             ) : iconKey(v.icon) === 'brain' ? (
-              <Brain className="w-6 h-6 text-[#2A5B6F]" />
+              <Brain className="w-6 h-6 text-white" />
             ) : (
               <svg
-                class="w-6 h-6 text-[#2A5B6F]"
+                class="w-6 h-6 text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

@@ -1,0 +1,176 @@
+---
+import { Award, Sparkles, Quote } from 'lucide-react';
+import Layout from '../layouts/Layout.astro';
+
+const openRoles = [
+  {
+    title: 'Espaço para a pessoa 02',
+    role: 'Pedagoga ou apoio especializado',
+    note: 'Uma área reservada para apresentar quem atua ao lado da dona no dia a dia.',
+    accent: 'bg-[var(--color-pastel-pink)]',
+  },
+  {
+    title: 'Espaço para a pessoa 03',
+    role: 'Designer, terapeuta ou colaboradora',
+    note: 'Aqui entra uma nova presença do time com foto, função e um resumo curto.',
+    accent: 'bg-[var(--color-pastel-blue)]',
+  },
+  {
+    title: 'Espaço para a pessoa 04',
+    role: 'Apoio administrativo ou produção',
+    note: 'Bloco pensado para futuros membros, sem travar a evolução da página.',
+    accent: 'bg-[var(--color-pastel-yellow)]',
+  },
+  {
+    title: 'Espaço para a pessoa 05',
+    role: 'Parceira ou colaboradora externa',
+    note: 'Use este card para destacar uma contribuição relevante para a marca.',
+    accent: 'bg-[var(--color-pastel-purple)]',
+  },
+];
+---
+
+<Layout
+  title="Conheça o time | Materiais Adaptados Fabi"
+  description="Apresentação do time com destaque para a dona e espaços reservados para novas pessoas da equipe."
+>
+	<section class="relative overflow-hidden pt-10 pb-16">
+		<div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(2,152,158,0.12),_transparent_30%),radial-gradient(circle_at_82%_18%,_rgba(188,47,201,0.10),_transparent_26%),linear-gradient(180deg,var(--color-surface-soft),var(--color-surface))]" />
+		<div class="pointer-events-none absolute -top-16 left-[-4rem] h-72 w-72 rounded-full bg-[var(--color-pastel-pink)]/45 blur-3xl" aria-hidden="true"></div>
+		<div class="pointer-events-none absolute right-[-4rem] top-20 h-80 w-80 rounded-full bg-[var(--color-pastel-blue)]/35 blur-3xl" aria-hidden="true"></div>
+
+		<div class="mx-auto max-w-7xl flex justify-center items-center px-6">
+			<div class="max-w-3xl flex flex-col justify-center items-center text-center" data-hero>
+				<p class="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-primary-teal)] shadow-sm backdrop-blur">
+					<Sparkles className="h-4 w-4" />
+					Conheça o time
+				</p>
+				<h1 class="mt-6 text-4xl font-semibold tracking-tight text-[var(--color-text)] md:text-6xl">
+					Uma equipe pensada para acolher, criar e transformar
+				</h1>
+				<div class="mt-8 flex flex-wrap gap-3" data-hero-actions>
+					<span class="rounded-full bg-[var(--color-pastel-pink)]/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-text)] shadow-sm">Criadora </span>
+					<span class="rounded-full bg-[var(--color-pastel-blue)]/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-text)] shadow-sm">Time estruturado</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="dona" class="px-6 pb-16">
+		<div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.45fr_1fr]">
+			<div class="relative overflow-hidden rounded-[36px] border border-white/70 bg-white/85 p-8 shadow-[0_25px_60px_-35px_rgba(15,23,42,0.28)] backdrop-blur md:p-10" data-reveal>
+				<div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(2,152,158,0.06),transparent_35%,rgba(188,47,201,0.05))]" aria-hidden="true"></div>
+				<div class="relative flex flex-col gap-8 md:flex-row md:items-center">
+					<div class="relative mx-auto h-72 w-72 shrink-0 overflow-hidden rounded-[32px] border border-white/70 bg-[linear-gradient(180deg,var(--color-pastel-pink),var(--color-pastel-purple))] p-4 shadow-[0_24px_60px_-30px_rgba(188,47,201,0.45)] md:mx-0">
+						<div class="flex h-full w-full items-center justify-center rounded-[28px] border-2 border-dashed border-white/75 bg-white/35 text-center text-sm font-semibold uppercase tracking-[0.24em] text-[var(--color-text)]">
+							Foto Fabi
+						</div>
+					</div>
+
+					<div class="max-w-xl">
+						<p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-primary-magenta)]">Criadora</p>
+						<h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--color-text)] md:text-4xl">Fabiani Malheiros Eggers</h2>
+						<p class="mt-5 text-base leading-8 text-slate-600">
+							Mãe de um jovem adulto autista minimamente falante, tem sua trajetória marcada pela maternidade atípica, uma jornada de desafios e conquistas que fortalece seu compromisso com o direito à comunicação e à educação para pessoas com necessidades complexas de comunicação.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-1" data-reveal>
+				<div class="rounded-4xl bg-[var(--color-primary-teal)] p-8 text-white shadow-[0_22px_60px_-35px_rgba(2,152,158,0.6)]">
+					<div class="flex items-center gap-3">
+						<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15">
+							<Award className="h-6 w-6" />
+						</div>
+						<p class="text-sm font-semibold uppercase tracking-[0.22em] text-white/80">Conhecimento e Experiência</p>
+					</div>
+					<p class="mt-5 text-lg leading-8 text-white/90">
+						Fabi também é consultora de RPM no Brasil e estudante de Fonoaudiologia, unindo duas frentes com o mesmo objetivo: ampliar oportunidades para pessoas autistas não falantes e minimamente falantes. Atualmente é estudante de fonoaudiologia.
+					</p>
+				</div>
+			</div>
+
+			<div class="rounded-[32px] bg-[var(--color-pastel-yellow)] p-6 shadow-[0_22px_60px_-35px_rgba(188,47,201,0.28)] md:p-8 lg:col-span-2" data-reveal>
+				<div class="flex items-start gap-3">
+					<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl text-[var(--color-primary-teal)]">
+						<Quote className="h-5 w-5" />
+					</div>
+					<p class="text-sm leading-7 text-[var(--color-text)] md:text-base">
+						Sempre guiada pelo respeito, por altas expectativas e pela presunção de competência e inteligência.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="equipe" class="px-6 pb-20">
+		<div class="mx-auto max-w-7xl">
+			<div class="max-w-3xl text-center mx-auto" data-reveal>
+				<p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-primary-teal)]">Outras pessoas</p>
+				<h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--color-text)] md:text-4xl">Espaços prontos para o restante do time</h2>
+				<p class="mt-4 text-base leading-7 text-slate-600">
+					Esses cards já deixam preparado o espaço para adicionar novas pessoas depois, mantendo consistência visual e um caminho claro de expansão.
+				</p>
+			</div>
+
+			<div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4" data-reveal>
+				{openRoles.map((person, index) => (
+					<article class="group relative overflow-hidden rounded-[32px] border border-slate-200 bg-white/90 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-35px_rgba(15,23,42,0.3)]">
+						<div class={`absolute inset-x-0 top-0 h-1 ${person.accent}`}></div>
+						<div class="flex items-start gap-4">
+							<div class={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl ${person.accent} text-xl font-semibold text-[var(--color-text)] shadow-sm ring-1 ring-white/60`}>
+								{String(index + 2).padStart(2, '0')}
+							</div>
+							<div>
+								<h3 class="text-lg font-semibold text-[var(--color-text)]">{person.title}</h3>
+								<p class="mt-1 text-sm font-medium text-[var(--color-primary-magenta)]">{person.role}</p>
+							</div>
+						</div>
+						<p class="mt-5 text-sm leading-7 text-slate-600">{person.note}</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<script>
+		import gsap from 'gsap';
+		import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+		gsap.registerPlugin(ScrollTrigger);
+
+		(() => {
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+			gsap.from('[data-hero] > *', {
+				y: 18,
+				opacity: 0,
+				duration: 0.8,
+				stagger: 0.12,
+				ease: 'power3.out',
+			});
+
+			gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+				gsap.from(el, {
+					y: 24,
+					opacity: 0,
+					duration: 0.85,
+					ease: 'power2.out',
+					scrollTrigger: {
+						trigger: el,
+						start: 'top 82%',
+					},
+				});
+			});
+
+			gsap.to('[data-hero-actions]', {
+				y: 6,
+				duration: 5,
+				repeat: -1,
+				yoyo: true,
+				ease: 'sine.inOut',
+			});
+		})();
+	</script>
+</Layout>

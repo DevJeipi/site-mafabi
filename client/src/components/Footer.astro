@@ -1,0 +1,107 @@
+---
+import type { TFooter } from '../types';
+import StrapiImage from './StrapiImage.astro';
+
+interface Props {
+  data: TFooter;
+}
+
+const { data } = Astro.props as Props;
+if (!data) return null;
+
+const { logo, navItems, socialLinks, text } = data;
+
+const year = new Date().getFullYear();
+---
+
+<footer class="w-full bg-[var(--color-primary-teal)] text-white">
+  <div class="mx-auto max-w-7xl px-6 py-14 md:py-16">
+    <div class="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr] items-start">
+      <div class="space-y-5">
+        {logo?.image ? (
+          <a
+            href={logo.href}
+            target={logo.isExternal ? '_blank' : '_self'}
+            rel={logo.isExternal ? 'noopener noreferrer' : undefined}
+            class="inline-flex items-center gap-4"
+          >
+            <StrapiImage
+              src={logo.image.url}
+              alt={logo.image.alternativeText || logo.label}
+              width={220}
+              height={96}
+              aspectRatio="auto"
+              fit="contain"
+              class="h-16 w-44 sm:h-20 sm:w-52"
+            />
+            <span class="text-lg font-semibold tracking-tight">{logo.label}</span>
+          </a>
+        ) : (
+          <div class="inline-flex items-center gap-3">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15">
+              <span class="text-base font-bold">{String(logo?.label?.[0] ?? 'M')}</span>
+            </div>
+            <span class="text-lg font-semibold tracking-tight">{logo?.label || 'Materiais Adaptados Fabi'}</span>
+          </div>
+        )}
+
+        <p class="max-w-md text-sm leading-6 text-white/80">
+          {text || 'Materiais adaptados com foco em acesso, funcionalidade e comunicação.'}
+        </p>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.24em] text-white/70">Navegação</p>
+        <ul class="mt-5 space-y-3 text-sm text-white/85">
+          {navItems?.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                target={item.isExternal ? '_blank' : '_self'}
+                rel={item.isExternal ? 'noopener noreferrer' : undefined}
+                class="inline-flex items-center gap-2 transition hover:text-[var(--color-pastel-yellow)]"
+              >
+                <span class="h-2 w-2 rounded-full bg-[var(--color-pastel-yellow)]" aria-hidden="true"></span>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.24em] text-white/70">Contato</p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          {socialLinks?.map((item, idx) => (
+            <a
+              href={item.href}
+              target={item.isExternal ? '_blank' : '_self'}
+              rel={item.isExternal ? 'noopener noreferrer' : undefined}
+              class="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:bg-white/15"
+              aria-label={item.label}
+              title={item.label}
+            >
+              {item.image?.url ? (
+                <StrapiImage
+                  src={item.image.url}
+                  alt={item.image.alternativeText || item.label}
+                  width={44}
+                  height={44}
+                  aspectRatio="square"
+                  class="h-full w-full"
+                />
+              ) : (
+                <span class="text-sm font-semibold">{String(item.label?.[0] ?? idx + 1)}</span>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-white/15 pt-6 text-sm text-white/70 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+      <p>{year} {logo?.label || 'Materiais Adaptados Fabi'}</p>
+      <p>{text || 'Construindo recursos com propósito e clareza.'}</p>
+    </div>
+  </div>
+</footer>

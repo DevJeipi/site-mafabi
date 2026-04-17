@@ -2,17 +2,17 @@
 interface Props {
   title?: string;
   description?: string;
-  iconColor?: string; // Tailwind class, ex: `bg-blue-100`
+  iconColor?: string;
 }
 
 const { title, description, iconColor = 'bg-[#2A5B6F]/10' } = Astro.props as Props;
 ---
 
-<div class="flex flex-col p-8 bg-white rounded-2xl border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
+<div class="flex flex-col p-8 bg-white/90 rounded-2xl border border-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
   <div class={`w-12 h-12 ${iconColor} rounded-xl mb-6 flex items-center justify-center`}>
     <slot name="icon" />
   </div>
 
-  <h3 class="text-xl font-bold text-gray-800 mb-3">{title ?? 'Título'}</h3>
-  <p class="text-gray-600 leading-snug">{description ?? 'Descrição breve dos valores.'}</p>
+  <h3 class="text-xl font-bold text-[var(--color-text)] mb-3">{title ?? 'Título'}</h3>
+  <p class="text-slate-600 leading-snug">{description ?? 'Descrição breve dos valores.'}</p>
 </div>

@@ -7,19 +7,20 @@ interface Props {
 
 const { mission } = Astro.props as Props;
 
-  const heading = mission.heading ?? 'O Manifesto';
+  const heading = mission.heading ?? 'O Propósito';
   const text = mission.text ?? 'Acreditamos no potencial que a comunicação liberta.';
   const quote = mission.quote ?? 'Onde outros veem barreiras, nós construímos pontes baseadas em altas expectativas.';
 
 ---
 
-<section class="py-20 px-4 bg-[#F9FAFB] text-center" data-reveal>
+<section class="py-20 px-4 bg-[var(--color-surface-alt)] text-center" data-reveal>
   <div class="max-w-4xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold text-[#2A5B6F] mb-8 tracking-tight">
+    <p class="text-sm uppercase tracking-[0.3em] text-[var(--color-primary-magenta)] font-semibold">Propósito</p>
+    <h2 class="mt-4 text-3xl md:text-4xl font-bold text-[var(--color-text)] mb-8 tracking-tight">
       {heading}
     </h2>
 
-  <p class="text-lg md:text-xl text-[#6B7280] leading-relaxed mb-10">
+  <p class="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 max-w-3xl mx-auto">
     {text.split('\n').map((line, idx) => (
       <>
         {line}
@@ -28,7 +29,7 @@ const { mission } = Astro.props as Props;
     ))}
   </p>
 
-    <div class="inline-block p-6 border-l-4 border-[#D97706] bg-white shadow-sm italic text-[#374151]">
+    <div class="inline-block p-6 border-l-4 border-[var(--color-primary-magenta)] bg-white/80 shadow-sm italic text-slate-700 rounded-2xl">
       "{quote}"
     </div>
   </div>

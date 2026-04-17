@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+:root {
+  --color-primary-teal: #02989e;
+  --color-primary-magenta: #bc2fc9;
+  --color-pastel-pink: #f7c6d9;
+  --color-pastel-yellow: #f7e6a6;
+  --color-pastel-purple: #d8c6f7;
+  --color-pastel-blue: #c7def7;
+  --color-pastel-orange: #f6c7a4;
+  --color-surface: #f7f4ef;
+  --color-surface-soft: #fbf8f4;
+  --color-surface-alt: #f3fbfb;
+  --color-text: #24424a;
+}
+
+html,
+body {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-primary-teal) 24%, white);
+}
